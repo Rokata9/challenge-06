@@ -189,6 +189,28 @@ const timerCallback = (function () {
       },
       { once: true }
     );
+
+    /* Uncomment below for situatution when fade-in animation finishes AFTER rotation animation */
+    // currEl.addEventListener(
+    //   "animationend",
+    //   () => {
+    //     // no need to toggle transparent class on nextEl as animation is not set to forwards (resets to opacity = 0 in the end)
+    //     currEl.classList.remove("animating");
+    //     currEl.classList.add("transparent"); // small interval in which it should be transparent as it has finished before fade-in animation
+    //   },
+    //   { once: true }
+    // );
+
+    // nextEl.addEventListener(
+    //   "animationend",
+    //   () => {
+    //     currValEl.innerHTML = nextHtml;
+    //     nextValEl.innerHTML = afterNextHtml;
+    //     currEl.classList.remove("transparent");
+    //     nextEl.classList.remove("animating");
+    //   },
+    //   { once: true }
+    // );
   }
 
   return () => {
