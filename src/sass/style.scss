@@ -97,6 +97,9 @@ main {
 
 @media (min-width: $desktop-width) {
   footer {
+    /* On desktop the navigation (.primary-nav) is not in the bottom of the screen and doesn't occupy space, 
+       but it's still considered a row (with height = 0) and grid row gap is added before it. We want the footer to move to the bottom, 
+       in the place of this empty row. */
     align-self: end;
     margin-bottom: calc(var(--grid-row-gap) * -1);
   }
@@ -198,6 +201,8 @@ section {
   }
 
   @media (min-width: $desktop-width) {
+    /* Changing position using grid-area instead of position: fixed; as with the latter one we won't know exactly
+       how much the offset from left and right is (since it's dynamic based on the <main> element grid */
     grid-area: nav;
     justify-self: end;
   }
@@ -268,7 +273,9 @@ section {
         }
 
         &.next.animating {
-          // if set to finish before rotation animation (current behaviour), delay should be max (rotation time - fade in time - ~~16ms rotation end handler min execution time)
+          /* if set to finish before rotation animation (current behaviour), 
+             delay should be probably max = rotation time - fade in time - ~~16-20ms (or whatever the fade-in end handler approx. execution time is)
+             if delay is 300ms, rotation event handler is executed first and then fade-in handler overrides next el transparency */
           animation: fade-in 200ms 200ms linear;
         }
 
