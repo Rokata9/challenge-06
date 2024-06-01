@@ -242,6 +242,7 @@ section {
 
     .countdown-item-wrapper {
       position: relative;
+      perspective: 1200px;
 
       .countdown-item {
         padding: 1.5em 1em;
@@ -304,7 +305,7 @@ footer {
 
 @keyframes rotate {
   100% {
-    transform: rotate3d(1, 0, 0, -90deg);
+    transform: rotateX(90deg);
   }
 }
 
