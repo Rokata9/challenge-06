@@ -95,16 +95,6 @@ main {
   align-items: center;
 }
 
-@media (min-width: $desktop-width) {
-  footer {
-    /* On desktop the navigation (.primary-nav) is not in the bottom of the screen and doesn't occupy space, 
-       but it's still considered a row (with height = 0) and grid row gap is added before it. We want the footer to move to the bottom, 
-       in the place of this empty row. */
-    align-self: end;
-    margin-bottom: calc(var(--grid-row-gap) * -1);
-  }
-}
-
 /* General */
 section {
   padding: 2.5rem 0;
@@ -152,8 +142,8 @@ section {
     position: absolute;
     content: "\002B";
     font-size: 2rem;
-    top: 50%;
-    left: 50%;
+    // top: 50%;
+    // left: 50%; not needed as .plus is 0x0
     transform: translate(-50%, -50%);
   }
 
@@ -266,7 +256,6 @@ section {
         &.next {
           position: absolute;
           inset: 0;
-          z-index: -1;
         }
 
         &.transparent {
@@ -301,11 +290,28 @@ footer {
   .copyright {
     color: hsl(var(--clr-neutral-100) / 0.5);
   }
+
+  @media (min-width: $desktop-width) {
+    /* On desktop the navigation (.primary-nav) is not in the bottom of the screen and doesn't occupy space, 
+         but it's still considered a row (with height = 0) and grid row gap is added before it. We want the footer to move to the bottom, 
+         in the place of this empty row. */
+    align-self: end;
+    margin-bottom: calc(var(--grid-row-gap) * -1);
+  }
 }
 
 @keyframes rotate {
+  75% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 0;
+  }
+
   100% {
-    transform: rotateX(90deg);
+    opacity: 0;
+    transform: rotateX(120deg);
   }
 }
 

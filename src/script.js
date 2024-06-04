@@ -185,6 +185,9 @@ const timerCallback = (function () {
       "animationend",
       () => {
         nextEl.classList.remove("animating");
+
+        // needed because fade-in animation is not forwards (will be reset to opacity: 0 in the end and we want it to stay opaque until
+        // rotation animation ends)
         nextEl.classList.remove("transparent");
       },
       { once: true }
