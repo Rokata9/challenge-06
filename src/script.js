@@ -38,14 +38,18 @@ const timerCallback = (function () {
     return newValue;
   }
 
-  function getDays(html, minutes) {
-    if (typeof minutes !== "undefined" && minutes !== MAX_HOURS - 1) {
+  // hours param represents the new value for hours
+  function getDays(html, hours) {
+    if (typeof hours !== "undefined" && hours !== MAX_HOURS - 1) {
       return { update: false };
     }
     const currentNum = trimLeadingZero(html);
+
+    // days don't reset like hours, minutes and seconds
     return currentNum - 1;
   }
 
+  // minutes param represents the new value for minutes
   function getHours(html, minutes) {
     if (typeof minutes !== "undefined" && minutes !== MAX_MINUTES - 1) {
       return { update: false };
@@ -53,6 +57,7 @@ const timerCallback = (function () {
     return getNewValue(html, MAX_HOURS);
   }
 
+  // seconds param represents the new value for seconds
   function getMinutes(html, seconds) {
     if (typeof seconds !== "undefined" && seconds !== MAX_SECONDS - 1) {
       return { update: false };
